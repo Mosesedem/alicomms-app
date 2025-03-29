@@ -8,6 +8,7 @@ import {
   Animated,
   Dimensions,
   Platform,
+  Image,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -158,17 +159,21 @@ const SplashScreen = ({ onDone }: { onDone: () => void }) => {
           style={styles.gradientContainer}
         >
           <View style={styles.welcomeContent}>
+            {/* Animated GIF */}
+            <Image
+              source={require('../assets/images/loader.gif')} // Adjust the path to your GIF
+              style={styles.gif}
+              resizeMode="contain"
+            />
             <Text style={styles.welcomeTitle}>Welcome Back!</Text>
             <Text style={styles.welcomeSubtitle}>
               Redirecting to AliComms...
             </Text>
-            <ActivityIndicator size="large" color="#fff" />
           </View>
         </LinearGradient>
       </SafeAreaView>
     );
   }
-
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
@@ -394,5 +399,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  gif: {
+    width: 200,
+    height: 200,
+    marginBottom: 20,
   },
 });
